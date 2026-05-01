@@ -4,9 +4,9 @@ import { useNavigate, Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 
 const NAV_ITEMS = [
-  { label: 'Services', href: '#narrative' },
-  { label: 'Works', href: '#work' },
-  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#' },
+  { label: 'Works', href: '#' },
+  { label: 'About', href: '/about', isInternal: true },
 ]
 
 export default function Navbar() {
@@ -26,29 +26,25 @@ export default function Navbar() {
     setMobileOpen(false)
   }, [location])
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e) => {
     e.preventDefault()
     setMobileOpen(false)
-    
-    if (location.pathname !== '/') {
-      navigate('/')
-      // Small delay to allow home to mount before scrolling
-      setTimeout(() => {
-        const el = document.querySelector(href)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 0)
-    } else {
-      const el = document.querySelector(href)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    // Non-internal links are non-functional as requested
+  }
+
+  const handleLogoClick = (e) => {
+    if (location.pathname === '/') {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
   return (
     <nav
-      className={`navbar ${scrolled ? 'navbar--solid' : 'navbar--transparent'}`}
+      className={`navbar ${scrolled || location.pathname !== '/' ? 'navbar--solid' : 'navbar--transparent'}`}
     >
       <div className="navbar__inner">
-        <Link to="/" className="navbar__logo">
+        <Link to="/" className="navbar__logo" onClick={handleLogoClick}>
           <span className="navbar__logo-text" style={{ fontFamily: 'var(--font-logo)' }}>
             Athlogix
           </span>
@@ -57,13 +53,19 @@ export default function Navbar() {
         <ul className="navbar__links">
           {NAV_ITEMS.map((item) => (
             <li key={item.label}>
-              <a
-                href={item.href}
-                className="navbar__link"
-                onClick={(e) => handleNavClick(e, item.href)}
-              >
-                {item.label}
-              </a>
+              {item.isInternal ? (
+                <Link to={item.href} className="navbar__link">
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  className="navbar__link"
+                  onClick={handleNavClick}
+                >
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
           <li>
@@ -108,17 +110,30 @@ export default function Navbar() {
             >
               <div className="navbar__mobile-inner">
                 {NAV_ITEMS.map((item, i) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    className="navbar__mobile-link"
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 + 0.1 }}
-                  >
-                    {item.label}
-                  </motion.a>
+                  item.isInternal ? (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 + 0.1 }}
+                    >
+                      <Link to={item.href} className="navbar__mobile-link">
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      className="navbar__mobile-link"
+                      onClick={handleNavClick}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 + 0.1 }}
+                    >
+                      {item.label}
+                    </motion.a>
+                  )
                 ))}
                 <motion.button
                   className="navbar__mobile-cta"

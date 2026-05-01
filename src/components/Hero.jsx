@@ -17,20 +17,24 @@ export default function Hero() {
   const navigate = useNavigate()
   const { scrollY } = useScroll()
   
-  // Fade in the bottom transition as we scroll (from 0 to 300px)
-  const transitionOpacity = useTransform(scrollY, [0, 300], [0, 1])
+  // Immersive background effects
+  const bgScale = useTransform(scrollY, [0, 800], [1, 1.1])
+  const bgOpacity = useTransform(scrollY, [0, 800], [1, 0.3])
+  const y = useTransform(scrollY, [0, 600], [0, -100])
+  const opacity = useTransform(scrollY, [0, 600], [1, 0])
 
   return (
     <section className="hero" id="hero" aria-label="Hero section">
-      <ParticleCanvas />
-
-      {/* Dynamic bottom transition - only visible after scroll */}
       <motion.div 
-        className="hero__transition"
-        style={{ opacity: transitionOpacity }}
-      />
-
-      <div className="container hero__content">
+        style={{ scale: bgScale, opacity: bgOpacity }}
+        className="hero__bg-wrapper"
+      >
+        <ParticleCanvas />
+      </motion.div>
+      <motion.div 
+        className="container hero__content"
+        style={{ y, opacity }}
+      >
         <motion.div
           className="hero__badge"
           custom={0}
@@ -81,7 +85,7 @@ export default function Hero() {
             <HiArrowRight aria-hidden="true" />
           </button>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }

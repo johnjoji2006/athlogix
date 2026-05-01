@@ -1,42 +1,28 @@
 /* ============================================================
-   QUOTE PAGE
+   QUOTE PAGE - LIGHT THEME
    ============================================================ */
 
 .quote-page {
   min-height: 100vh;
   background: var(--color-white);
-  color: var(--color-text-dark);
-  padding: 80px 0;
+  color: var(--color-black);
+  padding: 140px 0 100px;
   display: flex;
   flex-direction: column;
 }
 
 .quote-page__header {
-  margin-bottom: 60px;
-}
-
-.quote-page__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--color-accent);
-  font-weight: 600;
-  margin-bottom: 32px;
-  cursor: pointer;
-  transition: transform var(--transition-fast);
-}
-
-.quote-page__back:hover {
-  transform: translateX(-4px);
+  margin-bottom: 80px;
+  max-width: 800px;
 }
 
 .quote-page__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
-  letter-spacing: -1.5px;
+  letter-spacing: -2px;
   line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .quote-page__title span {
@@ -45,15 +31,15 @@
 
 .quote-page__subtitle {
   font-size: 1.2rem;
-  color: var(--color-text-muted);
-  max-width: 600px;
+  color: #666;
+  line-height: 1.6;
 }
 
 .quote-page__form {
-  max-width: 800px;
+  max-width: 900px;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 40px;
 }
 
 @media (min-width: 768px) {
@@ -68,43 +54,48 @@
 .quote-page__field {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .quote-page__field label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-text-dark);
+  color: #111;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .quote-page__input {
   width: 100%;
-  padding: 16px;
+  padding: 18px 24px;
   border-radius: var(--radius-md);
-  border: 2px solid #eee;
+  border: 1px solid #ddd;
   background: #fcfcfc;
+  color: #111;
   font-family: var(--font-body);
   font-size: 1rem;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-smooth);
+}
+
+.quote-page__input::placeholder {
+  color: #bbb;
 }
 
 .quote-page__input:focus {
   outline: none;
   border-color: var(--color-accent);
   background: var(--color-white);
-  box-shadow: 0 4px 20px rgba(79, 110, 247, 0.1);
+  box-shadow: 0 0 20px rgba(79, 110, 247, 0.1);
 }
 
 textarea.quote-page__input {
-  min-height: 180px;
+  min-height: 200px;
   resize: vertical;
 }
 
 .quote-page__submit {
   grid-column: span 1;
-  padding: 18px 40px;
+  padding: 20px 48px;
   background: var(--color-brand);
   color: var(--color-white);
   border-radius: var(--radius-full);
@@ -113,6 +104,8 @@ textarea.quote-page__input {
   transition: all var(--transition-smooth);
   width: fit-content;
   margin-top: 20px;
+  border: none;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
@@ -123,16 +116,35 @@ textarea.quote-page__input {
 
 .quote-page__submit:hover {
   background: var(--color-accent);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(79, 110, 247, 0.3);
 }
 
+/* Success State */
 .quote-page__success {
   text-align: center;
-  padding: 100px 0;
+  padding: 120px 0;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .quote-page__success h2 {
-  font-size: 3rem;
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+
+.quote-page__success .quote-page__title {
   margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .quote-page {
+    padding: 100px 0 60px;
+  }
+  .quote-page__header {
+    margin-bottom: 40px;
+  }
+  .quote-page__form {
+    gap: 24px;
+  }
 }

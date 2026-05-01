@@ -55,14 +55,14 @@ export default function Narrative() {
   const backgroundColor = useTransform(
     scrollYProgress,
     [0.5, 0.8], // Transition starts halfway and ends near the bottom
-    ['#ffffff', '#000000']
+    ['#ffffff', '#090f38']
   )
 
   // Map scroll progress to text color for the Why Us section
   const textColor = useTransform(
     scrollYProgress,
     [0.5, 0.8],
-    ['#000000', '#ffffff']
+    ['#090f38', '#ffffff']
   )
 
   return (

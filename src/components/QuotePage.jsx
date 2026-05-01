@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HiArrowLeft } from 'react-icons/hi'
 import { motion } from 'framer-motion'
 import './QuotePage.css'
 
@@ -28,13 +27,6 @@ export default function QuotePage() {
               We've received your engineering brief. Our architects will analyze your requirements 
               and get back to you within 24 hours.
             </p>
-            <button 
-              className="quote-page__submit" 
-              style={{ marginTop: '40px' }}
-              onClick={() => navigate('/')}
-            >
-              Back to Home
-            </button>
           </motion.div>
         </div>
       </div>
@@ -44,10 +36,6 @@ export default function QuotePage() {
   return (
     <div className="quote-page">
       <div className="container">
-        <button className="quote-page__back" onClick={() => navigate('/')}>
-          <HiArrowLeft /> Back to Home
-        </button>
-
         <header className="quote-page__header">
           <h1 className="quote-page__title">Tell us about your <span>Vision.</span></h1>
           <p className="quote-page__subtitle">

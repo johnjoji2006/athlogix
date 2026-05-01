@@ -6,6 +6,7 @@
   background: var(--color-black);
   padding: 80px 0 40px;
   position: relative;
+  z-index: 10;
 }
 
 .footer::before {

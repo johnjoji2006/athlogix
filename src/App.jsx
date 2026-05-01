@@ -3,28 +3,32 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Story from './components/Story'
 import Narrative from './components/Narrative'
-import Work from './components/Work'
-import About from './components/About'
+import AboutHome from './components/AboutHome'
+import AboutPage from './components/AboutPage'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import QuotePage from './components/QuotePage'
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={
-        <>
-          <Navbar />
-          <main>
-            <Hero />
-            <Story />
-            <Narrative />
-            <Work />
-            <About />
-          </main>
-          <Footer />
-        </>
-      } />
-      <Route path="/quote" element={<QuotePage />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <main>
+              <Hero />
+              <Story />
+              <Narrative />
+              <AboutHome />
+            </main>
+            <Footer />
+          </>
+        } />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/quote" element={<QuotePage />} />
+      </Routes>
+    </>
   )
 }

@@ -1,0 +1,107 @@
+.about-page {
+  background-color: #000000;
+  min-height: 100vh;
+  color: var(--color-white);
+  padding-top: 100px; /* Account for fixed navbar */
+}
+
+.about-hero {
+  padding: 100px 0 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-hero__content {
+  max-width: 800px;
+}
+
+.about-hero__title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.about-hero__subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--color-accent);
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Details Section */
+.about-details {
+  padding: 100px 0;
+}
+
+.about-details__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .about-details__grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.about-details__body {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30px;
+}
+
+.about-details__body strong {
+  color: var(--color-white);
+}
+
+.about-details__values {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.about-details__value-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.about-details__value-card:hover {
+  border-color: var(--color-accent);
+  background: rgba(79, 110, 247, 0.05);
+}
+
+.about-details__value-number {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.about-details__value-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .about-details__values {
+    gap: 12px;
+  }
+  .about-details__value-card {
+    padding: 25px 15px;
+  }
+  .about-details__value-number {
+    font-size: 2rem;
+  }
+}

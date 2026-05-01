@@ -59,13 +59,18 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+html,
+body {
+  width: 100%;
+  position: relative;
+}
+
 body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-text-dark);
   background: var(--color-brand);
-  overflow-x: hidden;
 }
 
 a {

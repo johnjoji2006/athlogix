@@ -8,9 +8,10 @@
   padding-top: 80px;
   padding-bottom: 120px;
   /* background-color is managed via framer-motion inline styles */
-  color: #000;
+  color: var(--color-black);
   transition: background-color 0.1s ease;
   overflow: hidden;
+  z-index: 10;
 }
 
 .narrative__section {
@@ -112,7 +113,7 @@
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 12px;
-  color: #111;
+  color: var(--color-black);
 }
 
 .problem-card__desc {
@@ -277,7 +278,7 @@
   font-family: var(--font-heading);
   font-size: 18px;
   font-weight: 700;
-  color: #111;
+  color: var(--color-black);
   margin-bottom: 40px;
 }
 
@@ -367,18 +368,18 @@
   justify-content: center;
   padding: 16px 40px;
   border-radius: var(--radius-full);
-  background: #090f38; /* Brand CTA Color requested */
+  background: linear-gradient(135deg, #4f6ef7 0%, #3b49df 100%);
   color: var(--color-white);
   font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 600;
   transition: all var(--transition-smooth);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-decoration: none;
 }
 
 .why-us-cta:hover {
-  background: #111b5c;
+  background: var(--color-accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(9, 15, 56, 0.4);
+  box-shadow: var(--shadow-glow);
 }
