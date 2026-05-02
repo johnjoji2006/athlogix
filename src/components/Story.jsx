@@ -71,8 +71,8 @@ export default function Story() {
       <div className="container story__grid">
         <motion.div 
           className="story__content"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
@@ -101,8 +101,8 @@ export default function Story() {
           {/* Floating Stats - More labels as requested */}
           <motion.div 
             className="story__stat story__stat--1"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ delay: 0.3 }}
           >
             <div className="story__stat-num">600+</div>
@@ -111,8 +111,8 @@ export default function Story() {
 
           <motion.div 
             className="story__stat story__stat--2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ delay: 0.5 }}
           >
             <div className="story__stat-num">450+</div>
@@ -121,8 +121,8 @@ export default function Story() {
 
           <motion.div 
             className="story__stat story__stat--3"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ delay: 0.7 }}
           >
             <div className="story__stat-num">15+</div>
@@ -131,8 +131,8 @@ export default function Story() {
 
           <motion.div 
             className="story__stat story__stat--4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ delay: 0.9 }}
           >
             <div className="story__stat-num">99%</div>

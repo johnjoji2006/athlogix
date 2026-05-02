@@ -18,8 +18,8 @@ export default function AboutHome() {
           {/* Left Column - The Question */}
           <motion.div 
             className="about-home__left"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
@@ -39,8 +39,8 @@ export default function AboutHome() {
           {/* Right Column - Quick Starts */}
           <motion.div 
             className="about-home__right"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >

@@ -25,8 +25,8 @@ export default function Works() {
         <div className="container">
           <motion.div 
             className="works-hero__content"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="works-hero__title">Our Work</h1>
@@ -56,8 +56,8 @@ export default function Works() {
               key={project.id} 
               className="work-card"
               variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+                hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
               }}
             >
               <div className="work-card__image-wrapper">

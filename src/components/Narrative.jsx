@@ -76,8 +76,8 @@ export default function Narrative() {
       <div className="narrative__section problem-section container">
         <motion.div 
           className="narrative__label"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           THE PROBLEM
@@ -85,8 +85,8 @@ export default function Narrative() {
         
         <motion.h2 
           className="narrative__headline"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ delay: 0.1 }}
         >
@@ -95,8 +95,8 @@ export default function Narrative() {
 
         <motion.p 
           className="narrative__subheadline"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ delay: 0.2 }}
         >
@@ -108,8 +108,8 @@ export default function Narrative() {
             <motion.div 
               className="problem-card" 
               key={point.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: 0.3 + i * 0.1 }}
             >
@@ -126,8 +126,8 @@ export default function Narrative() {
         <div className="solution-header">
           <motion.div 
             className="narrative__label"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-100px' }}
           >
             THE SOLUTION
@@ -135,8 +135,8 @@ export default function Narrative() {
 
           <motion.h2 
             className="narrative__headline"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ delay: 0.1 }}
           >
@@ -151,8 +151,8 @@ export default function Narrative() {
                 <motion.div 
                   className="stat-card" 
                   key={stat.title}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+                  whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ delay: 0.2 + i * 0.1 }}
                 >
@@ -166,7 +166,7 @@ export default function Narrative() {
           <motion.div 
             className="solution-right"
             initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
@@ -218,8 +218,8 @@ export default function Narrative() {
       >
         <motion.div 
           className="narrative__label narrative__label--dark"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           WHY US
@@ -227,8 +227,8 @@ export default function Narrative() {
 
         <motion.h2 
           className="narrative__headline"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ delay: 0.1 }}
         >
@@ -240,8 +240,8 @@ export default function Narrative() {
             <motion.div 
               className="why-us-card" 
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: 0.2 + i * 0.1 }}
             >
@@ -253,8 +253,8 @@ export default function Narrative() {
         
         <motion.div 
           className="why-us-cta-container"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ delay: 0.5 }}
         >

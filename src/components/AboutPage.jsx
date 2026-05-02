@@ -10,10 +10,11 @@ const VALUES = [
 ]
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
   visible: (i) => ({
     opacity: 1,
     y: 0,
+    filter: 'blur(0px)',
     transition: { delay: i * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   })
 }
@@ -55,8 +56,8 @@ export default function AboutPage() {
           <div className="about-details__grid">
             <motion.div
               className="about-details__text"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
@@ -77,7 +78,7 @@ export default function AboutPage() {
                   key={v.label}
                   className="about-details__value-card"
                   initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                 >
