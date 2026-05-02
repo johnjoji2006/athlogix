@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, OrbitControls, MeshDistortMaterial } from '@react-three/drei'
 import * as THREE from 'three'
+import { useNavigate } from 'react-router-dom'
 import { HiArrowRight } from 'react-icons/hi'
 import './Story.css'
 
@@ -64,6 +65,7 @@ function DiamondCore() {
 }
 
 export default function Story() {
+  const navigate = useNavigate()
   return (
     <section className="story" id="about">
       <div className="container story__grid">
@@ -75,12 +77,14 @@ export default function Story() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="story__title">Our Story</h2>
+          <h3 className="story__subtitle">The DNA of Athlogix</h3>
           <p className="story__text">
-            Beyond standard engineering, we specialize in high-precision digital architecture. 
-            Our journey is defined by pushing the boundaries of what's possible, 
-            transforming raw complexity into elegant, high-performance solutions.
+            Derived from Greek Athlos, Athlon, — meaning contest, prize won in a contest — and Logic, our name represents the core of our partnership.
           </p>
-          <button className="story__cta">
+          <p className="story__text">
+            Our journey was solidified when we won a prestigious innovation competition, proving that our logic could stand the high stakes of contests. Today we bring that same award winning rigor to every IT service we provide.
+          </p>
+          <button className="story__cta" onClick={() => navigate('/about')}>
             About us <HiArrowRight />
           </button>
         </motion.div>

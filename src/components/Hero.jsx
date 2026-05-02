@@ -51,9 +51,7 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
         >
-          Engineering Digital{' '}
-          <span className="hero__headline-accent">Excellence</span> at the
-          Speed of Thought.
+          Where Complex <span className="hero__headline-accent">Logic</span> Meets Seamless Reality.
         </motion.h1>
 
         <motion.p
@@ -63,9 +61,7 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
         >
-          We architect high-performance Web, AI, IoT, and Software Development
-          solutions that transform ambitious concepts into market-leading
-          digital products.
+          We architect high-performance IT solutions that transform ambitious concepts into market-leading digital products.
         </motion.p>
 
         <motion.div
@@ -75,10 +71,10 @@ export default function Hero() {
           animate="visible"
           variants={fadeUp}
         >
-          <a href="#work" className="hero__cta-outline">
-            View Our Projects
+          <button className="hero__cta-outline" onClick={() => navigate('/works')}>
+            Explore Our Work
             <HiArrowRight aria-hidden="true" />
-          </a>
+          </button>
           <button className="hero__cta-primary" onClick={() => navigate('/quote')}>
             Book a Strategy Call
             <HiArrowRight aria-hidden="true" />

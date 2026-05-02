@@ -34,7 +34,7 @@ export default function AboutPage() {
               animate="visible"
               variants={fadeUp}
             >
-              The Minds Behind Athlogix
+              The Minds Behind <span className="logo-font">Athlogix</span>
             </motion.h1>
             <motion.p 
               className="about-hero__subtitle"
@@ -61,7 +61,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
             >
               <p className="about-details__body">
-                <strong>Athlogix</strong> is a team of developer-innovators dedicated to pushing the boundaries of what is possible with code and hardware.
+                <strong className="logo-font">Athlogix</strong> is a team of developer-innovators dedicated to pushing the boundaries of what is possible with code and hardware.
               </p>
               <p className="about-details__body">
                 We believe software should be as <strong>robust as physical engineering</strong> — built with precision, tested under pressure, and designed to endure. Every product we ship carries this philosophy in its architecture.

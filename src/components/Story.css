@@ -32,13 +32,21 @@
 .story__title {
   font-size: 40px;
   color: var(--color-white);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+}
+
+.story__subtitle {
+  font-family: var(--font-logo);
+  font-size: 24px;
+  color: var(--color-white);
+  margin-bottom: 32px;
+  font-weight: 600; /* Fredoka Bold */
 }
 
 .story__text {
   font-size: 18px;
   color: var(--color-text-light);
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .story__cta {

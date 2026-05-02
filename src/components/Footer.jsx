@@ -32,7 +32,7 @@ export default memo(function Footer() {
           {/* Brand Column */}
           <div>
             <div className="footer__brand-logo">
-              <span className="footer__brand-name" style={{ fontFamily: 'var(--font-logo)', fontSize: '26px' }}>
+              <span className="footer__brand-name">
                 Athlogix
               </span>
             </div>
@@ -89,7 +89,7 @@ export default memo(function Footer() {
         {/* Bottom Bar */}
         <div className="footer__bottom">
           <span className="footer__copy">
-            &copy; 2026 Athlogix. All rights reserved.
+            &copy; 2026 <span className="logo-font">Athlogix</span>. All rights reserved.
           </span>
           <span className="footer__location">
             <HiLocationMarker aria-hidden="true" />

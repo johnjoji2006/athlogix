@@ -65,7 +65,7 @@ const Navbar = memo(function Navbar() {
           onClick={handleLogoClick}
           onMouseEnter={() => setServicesHovered(false)}
         >
-          <span className="navbar__logo-text" style={{ fontFamily: 'var(--font-logo)' }}>
+          <span className="navbar__logo-text">
             Athlogix
           </span>
         </Link>

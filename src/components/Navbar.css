@@ -66,9 +66,9 @@
 }
 
 .navbar__logo-text {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 22px;
+  font-family: var(--font-logo);
+  font-weight: 600;
+  font-size: 28px;
   color: var(--color-white);
   letter-spacing: -0.5px;
 }
