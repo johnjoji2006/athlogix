@@ -2,12 +2,12 @@ import { useRef, useMemo, useCallback, useEffect, memo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const PARTICLE_COUNT = 700
-const MOUSE_RADIUS = 1.5 // Extremely localized
-const REPEL_STRENGTH = 0.005 // Barely noticeable push
-const RETURN_STRENGTH = 0.012 
-const FLOAT_SPEED = 0.4
-const DAMPING = 0.94 
+const PARTICLE_COUNT = 2500
+const MOUSE_RADIUS = 2.0
+const MOUSE_RADIUS_SQ = MOUSE_RADIUS * MOUSE_RADIUS
+const REPEL_STRENGTH = 0.015
+const RETURN_STRENGTH = 0.015 
+const DAMPING = 0.88 
 
 function Particles() {
   const meshRef = useRef()
@@ -22,9 +22,15 @@ function Particles() {
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const i3 = i * 3
-      const x = (Math.random() - 0.5) * 16
-      const y = (Math.random() - 0.5) * 10
-      const z = (Math.random() - 0.5) * 2
+      const ring = Math.floor(Math.random() * 25) + 1
+      const radius = ring * 0.5 + 1.5
+      const segmentCount = 16 + ring * 2
+      const segment = Math.floor(Math.random() * segmentCount)
+      const angle = (segment / segmentCount) * Math.PI * 2 + (Math.random() * 0.15) + (ring * 0.1)
+      
+      const x = Math.cos(angle) * radius
+      const y = Math.sin(angle) * radius
+      const z = (Math.random() - 0.5) * 0.5 - (radius * 0.05)
 
       pos[i3] = x; pos[i3 + 1] = y; pos[i3 + 2] = z
       home[i3] = x; home[i3 + 1] = y; home[i3 + 2] = z
@@ -33,6 +39,7 @@ function Particles() {
   }, [])
 
   const dummy = useMemo(() => new THREE.Object3D(), [])
+  const matrix = useMemo(() => new THREE.Matrix4(), [])
 
   const handlePointerMove = useCallback((e) => {
     mouseRef.current.set(
@@ -51,58 +58,64 @@ function Particles() {
 
   useFrame((state) => {
     if (!meshRef.current) return
-    const time = state.clock.elapsedTime
 
-    // Smooth "thick" mouse tracking
-    lerpedMouse.current.lerp(mouseRef.current, 0.06)
+    // 1. Rotate the entire mesh instead of recalculating 2500 positions! (Massive optimization)
+    meshRef.current.rotation.z -= 0.0005
+
+    // Transform mouse coordinates into the rotated mesh space
+    lerpedMouse.current.lerp(mouseRef.current, 0.1)
+    
+    // Reverse the mesh rotation for the mouse to keep repel accurate
+    const cosR = Math.cos(-meshRef.current.rotation.z)
+    const sinR = Math.sin(-meshRef.current.rotation.z)
+    const localMouseX = lerpedMouse.current.x * cosR - lerpedMouse.current.y * sinR
+    const localMouseY = lerpedMouse.current.x * sinR + lerpedMouse.current.y * cosR
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const i3 = i * 3
       const px = positions[i3], py = positions[i3 + 1], pz = positions[i3 + 2]
+      const hx = homePositions[i3], hy = homePositions[i3 + 1], hz = homePositions[i3 + 2]
 
-      // Difference from lerped mouse
-      const dx = px - lerpedMouse.current.x
-      const dy = py - lerpedMouse.current.y
+      const dx = px - localMouseX
+      const dy = py - localMouseY
       const distSq = dx * dx + dy * dy
-      const dist = Math.sqrt(distSq)
 
-      // 1. Repulsion (Push away like water)
-      if (dist < MOUSE_RADIUS) {
+      // Fast check before doing Math.sqrt
+      let s = 0.04
+      if (distSq < MOUSE_RADIUS_SQ) {
+        const dist = Math.sqrt(distSq)
         const force = (1 - dist / MOUSE_RADIUS) * REPEL_STRENGTH
         velocities[i3] += dx * force
         velocities[i3 + 1] += dy * force
+        velocities[i3 + 2] += force * 0.5
+        s += (1 - dist / MOUSE_RADIUS) * 0.03
       }
 
-      // 2. Wave / Float motion
-      const driftX = Math.sin(time * FLOAT_SPEED + i * 0.1) * 0.4
-      const driftY = Math.cos(time * FLOAT_SPEED + i * 0.15) * 0.3
-      
-      // 3. Return to home position
-      velocities[i3] += (homePositions[i3] + driftX - px) * RETURN_STRENGTH
-      velocities[i3 + 1] += (homePositions[i3 + 1] + driftY - py) * RETURN_STRENGTH
+      velocities[i3] += (hx - px) * RETURN_STRENGTH
+      velocities[i3 + 1] += (hy - py) * RETURN_STRENGTH
+      velocities[i3 + 2] += (hz - pz) * RETURN_STRENGTH
 
-      // 4. Physics (Damping + Movement)
       velocities[i3] *= DAMPING
       velocities[i3 + 1] *= DAMPING
+      velocities[i3 + 2] *= DAMPING
       
       positions[i3] += velocities[i3]
       positions[i3 + 1] += velocities[i3 + 1]
-      positions[i3 + 2] = homePositions[i3 + 2] + Math.sin(time * 0.3 + i) * 0.2
+      positions[i3 + 2] += velocities[i3 + 2]
 
-      // 5. Update Matrix
-      dummy.position.set(positions[i3], positions[i3 + 1], positions[i3 + 2])
-      const s = 0.035 + (dist < MOUSE_RADIUS ? (1 - dist / MOUSE_RADIUS) * 0.025 : 0)
-      dummy.scale.setScalar(s)
-      dummy.updateMatrix()
-      meshRef.current.setMatrixAt(i, dummy.matrix)
+      // Manual, faster matrix composition (skips quaternion and rotmath)
+      matrix.makeTranslation(positions[i3], positions[i3 + 1], positions[i3 + 2])
+      matrix.scale(new THREE.Vector3(s, s, s))
+      meshRef.current.setMatrixAt(i, matrix)
     }
     meshRef.current.instanceMatrix.needsUpdate = true
   })
 
   return (
     <instancedMesh ref={meshRef} args={[null, null, PARTICLE_COUNT]}>
-      <sphereGeometry args={[1, 6, 6]} />
-      <meshBasicMaterial color="#4f6ef7" transparent opacity={0.5} />
+      {/* Reduced sphere detail for faster rendering */}
+      <sphereGeometry args={[1, 5, 5]} />
+      <meshBasicMaterial color="#3b82f6" transparent opacity={0.8} />
     </instancedMesh>
   )
 }
@@ -116,8 +129,9 @@ const ParticleCanvas = memo(function ParticleCanvas() {
       pointerEvents: 'none' 
     }}>
       <Canvas
-        camera={{ position: [0, 0, 7], fov: 60 }}
-        dpr={[1, 2]}
+        camera={{ position: [0, 0, 9], fov: 60 }}
+        // Hard-cap DPR to avoid massive pixel counts on 4k retina displays
+        dpr={[1, 1.5]}
         gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}
       >
         <Particles />
