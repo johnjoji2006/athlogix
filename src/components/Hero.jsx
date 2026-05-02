@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import ParticleCanvas from './ParticleCanvas'
 import { HiArrowRight } from 'react-icons/hi'
@@ -17,16 +17,15 @@ export default function Hero() {
   const navigate = useNavigate()
   const { scrollY } = useScroll()
   
-  // Immersive background effects
-  const bgScale = useTransform(scrollY, [0, 800], [1, 1.1])
+  // Immersive background effects (Opacity only to prevent WebGL resize thrashing)
   const bgOpacity = useTransform(scrollY, [0, 800], [1, 0.3])
-  const y = useTransform(scrollY, [0, 600], [0, -100])
-  const opacity = useTransform(scrollY, [0, 600], [1, 0])
+  const y = useTransform(scrollY, [0, 800], [0, -100])
+  const opacity = useTransform(scrollY, [0, 800], [1, 0])
 
   return (
     <section className="hero" id="hero" aria-label="Hero section">
       <motion.div 
-        style={{ scale: bgScale, opacity: bgOpacity }}
+        style={{ opacity: bgOpacity }}
         className="hero__bg-wrapper"
       >
         <ParticleCanvas />

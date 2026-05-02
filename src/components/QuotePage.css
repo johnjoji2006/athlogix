@@ -52,22 +52,29 @@
 }
 
 .quote-page__field {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
-.quote-page__field label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #111;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.quote-page__label {
+  position: absolute;
+  left: 25px; /* Updated to 25px as requested */
+  top: 18px;
+  font-size: 1rem;
+  color: #666;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  padding: 0;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .quote-page__input {
   width: 100%;
-  padding: 18px 24px;
+  padding: 18px 25px; /* Consistent 25px padding for all inputs */
   border-radius: var(--radius-md);
   border: 1px solid #ddd;
   background: #fcfcfc;
@@ -77,19 +84,62 @@
   transition: all var(--transition-smooth);
 }
 
-.quote-page__input::placeholder {
-  color: #bbb;
-}
-
-.quote-page__input:focus {
+.quote-page__input:focus,
+.quote-page__input:not(:placeholder-shown) {
   outline: none;
   border-color: var(--color-accent);
   background: var(--color-white);
   box-shadow: 0 0 20px rgba(79, 110, 247, 0.1);
 }
 
+/* Floating Label Animation */
+.quote-page__input:focus ~ .quote-page__label,
+.quote-page__input:not(:placeholder-shown) ~ .quote-page__label {
+  top: -10px;
+  left: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: var(--color-white);
+  padding: 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Prefix Styling for Budget */
+.quote-page__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.quote-page__prefix {
+  position: absolute;
+  left: 10px; /* Adjusted for 25px padding */
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: translateX(-5px);
+}
+
+.quote-page__input:focus ~ .quote-page__prefix,
+.quote-page__input:not(:placeholder-shown) ~ .quote-page__prefix {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.quote-page__optional {
+  font-size: 0.75rem;
+  color: #999;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
 textarea.quote-page__input {
-  min-height: 200px;
+  min-height: 180px;
   resize: vertical;
 }
 
@@ -143,8 +193,15 @@ textarea.quote-page__input {
   }
   .quote-page__header {
     margin-bottom: 40px;
+    text-align: center; /* Center header text too on mobile for better balance */
   }
   .quote-page__form {
     gap: 24px;
   }
+  .quote-page__submit {
+    margin: 20px auto 0; /* Center the button on mobile */
+    width: 100%; /* Full width button on mobile feels more premium */
+    max-width: 320px;
+  }
 }
+

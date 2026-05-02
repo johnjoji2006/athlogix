@@ -2,11 +2,11 @@
   background-color: #000000;
   min-height: 100vh;
   color: var(--color-white);
-  padding-top: 100px; /* Account for fixed navbar */
+  padding-top: 80px; /* Reduced from 100px */
 }
 
 .about-hero {
-  padding: 100px 0 60px;
+  padding: 60px 0 40px; /* Reduced from 100px 0 60px */
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -31,8 +31,9 @@
 
 /* Details Section */
 .about-details {
-  padding: 100px 0;
+  padding: 60px 0; /* Reduced from 100px 0 */
 }
+
 
 .about-details__grid {
   display: grid;

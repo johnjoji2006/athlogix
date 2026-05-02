@@ -46,32 +46,43 @@ export default function QuotePage() {
 
         <form className="quote-page__form" onSubmit={handleSubmit}>
           <div className="quote-page__field">
-            <label>Full Name</label>
-            <input type="text" className="quote-page__input" placeholder="e.g. John Doe" required />
+            <input type="text" id="fullName" className="quote-page__input" placeholder=" " required />
+            <label htmlFor="fullName" className="quote-page__label">Full Name</label>
           </div>
 
           <div className="quote-page__field">
-            <label>Email Address</label>
-            <input type="email" className="quote-page__input" placeholder="e.g. john@company.com" required />
+            <input type="email" id="email" className="quote-page__input" placeholder=" " required />
+            <label htmlFor="email" className="quote-page__label">Email Address</label>
           </div>
 
           <div className="quote-page__field">
-            <label>Project Type</label>
-            <input type="text" className="quote-page__input" placeholder="e.g. AI SaaS, IoT Dashboard, Custom Software" required />
+            <input type="tel" id="mobile" className="quote-page__input" placeholder=" " />
+            <label htmlFor="mobile" className="quote-page__label">
+              Mobile Number <span className="quote-page__optional">(Optional)</span>
+            </label>
           </div>
 
           <div className="quote-page__field">
-            <label>Estimated Budget</label>
-            <input type="text" className="quote-page__input" placeholder="e.g. $10,000 - $25,000" required />
+            <input type="text" id="projectType" className="quote-page__input" placeholder=" " required />
+            <label htmlFor="projectType" className="quote-page__label">Project Type</label>
+          </div>
+
+          <div className="quote-page__field">
+            <div className="quote-page__input-wrapper">
+              <input type="text" id="budget" className="quote-page__input" placeholder=" " required />
+              <span className="quote-page__prefix">₹</span>
+              <label htmlFor="budget" className="quote-page__label">Estimated Budget</label>
+            </div>
           </div>
 
           <div className="quote-page__field quote-page__full">
-            <label>Project Brief</label>
             <textarea 
+              id="projectBrief"
               className="quote-page__input" 
-              placeholder="Describe your vision, target audience, and key technical requirements..." 
+              placeholder=" " 
               required
             ></textarea>
+            <label htmlFor="projectBrief" className="quote-page__label">Project Brief</label>
           </div>
 
           <button type="submit" className="quote-page__submit">

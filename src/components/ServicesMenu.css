@@ -1,0 +1,138 @@
+/* ============================================================
+   SERVICES MEGA-MENU
+   ============================================================ */
+
+.services-menu {
+  position: relative;
+  background-color: #000000;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  z-index: 100;
+  padding: 60px 0 80px;
+}
+
+.services-menu__bg-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 50%, #090f38 0%, transparent 60%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.services-menu__container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .services-menu__container {
+    flex-direction: row;
+    gap: 80px;
+  }
+}
+
+.services-menu__left {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.services-menu__headline {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.services-menu__link {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.services-menu__link-arrow {
+  transition: transform 0.3s ease;
+}
+
+.services-menu__link:hover .services-menu__link-arrow {
+  transform: translateX(4px);
+}
+
+.services-menu__right {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .services-menu__right {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-menu__right {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.services-menu__col {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.services-menu__category {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.services-menu__category-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.services-menu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.services-menu__item {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.services-menu__item:hover {
+  color: #ffffff;
+}

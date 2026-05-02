@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback } from 'react'
+import { useRef, useMemo, useCallback, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -44,7 +44,7 @@ function Particles() {
     mouseRef.current.y *= viewport.height / 2
   }, [viewport])
 
-  useMemo(() => {
+  useEffect(() => {
     window.addEventListener('pointermove', handlePointerMove, { passive: true })
     return () => window.removeEventListener('pointermove', handlePointerMove)
   }, [handlePointerMove])

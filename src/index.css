@@ -60,9 +60,11 @@ html {
 }
 
 html,
-body {
+body,
+#root {
   width: 100%;
   position: relative;
+  overflow-x: clip;
 }
 
 body {

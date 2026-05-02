@@ -1,0 +1,125 @@
+/* ============================================================
+   WORKS PAGE
+   ============================================================ */
+
+.works-page {
+  background: var(--color-white);
+  color: var(--color-black);
+  min-height: 100vh;
+  padding-top: 80px; /* Reduced offset */
+}
+
+.works-hero {
+  padding: 40px 0 20px; /* Reduced padding */
+  text-align: left;
+}
+
+.works-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 15px; /* Reduced margin */
+  line-height: 1.1;
+}
+
+.works-hero__subtitle {
+  font-size: 1.25rem;
+  color: var(--color-muted, #666);
+}
+
+.works-section {
+  padding: 10px 0 60px; /* Reduced padding */
+  width: 100%;
+}
+
+
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px; /* Adjusted gap for card layout */
+  margin-top: 30px;
+}
+
+
+@media (min-width: 768px) {
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .works-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 10px 40px rgba(79, 110, 247, 0.08);
+  transform: translateY(-5px);
+}
+
+
+.work-card__image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-black); /* Fallback/Skeleton background */
+}
+
+.work-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.work-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.work-card__category {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.work-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  /* Color inherited to work on light/dark themes */
+}
+
+.work-card__description {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666; /* Muted color but still readable */
+  line-height: 1.6;
+}
+
+/* Ensure description is readable on deep black background */
+.deep-black .work-card__description {
+  color: #aaa;
+}
