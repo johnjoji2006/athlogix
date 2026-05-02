@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { motion } from 'framer-motion'
 import {
   FaLinkedinIn,
@@ -17,7 +18,7 @@ const SOCIALS = [
   { icon: <FaFacebookF />, label: 'Facebook', href: '#' },
 ]
 
-export default function Footer() {
+export default memo(function Footer() {
   return (
     <footer className="footer" id="footer" aria-label="Site footer">
       <div className="container">
@@ -98,4 +99,4 @@ export default function Footer() {
       </div>
     </footer>
   )
-}
+})

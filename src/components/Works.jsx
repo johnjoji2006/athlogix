@@ -65,6 +65,8 @@ export default function Works() {
                   src={project.image} 
                   alt={project.title} 
                   className="work-card__image"
+                  loading="lazy"
+                  decoding="async"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 />

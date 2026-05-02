@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback, memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { HiX, HiMenuAlt3 } from 'react-icons/hi'
@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: 'About', href: '/about', isInternal: true },
 ]
 
-export default function Navbar() {
+const Navbar = memo(function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesHovered, setServicesHovered] = useState(false)
@@ -31,28 +31,28 @@ export default function Navbar() {
     setServicesHovered(false)
   }, [location])
 
-  const handleNavClick = (e) => {
+  const handleNavClick = useCallback((e) => {
     e.preventDefault()
     setMobileOpen(false)
-  }
+  }, [])
 
-  const handleLogoClick = (e) => {
+  const handleLogoClick = useCallback((e) => {
     if (location.pathname === '/') {
       e.preventDefault()
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-  }
+  }, [location.pathname])
 
-  const openServices = () => {
+  const openServices = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     setServicesHovered(true)
-  }
+  }, [])
 
-  const closeServices = (delay = 100) => {
+  const closeServices = useCallback((delay = 100) => {
     timeoutRef.current = setTimeout(() => {
       setServicesHovered(false)
     }, delay)
-  }
+  }, [])
 
   return (
     <nav
@@ -204,4 +204,6 @@ export default function Navbar() {
 
     </nav>
   )
-}
+})
+
+export default Navbar

@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback, useEffect } from 'react'
+import { useRef, useMemo, useCallback, useEffect, memo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -107,7 +107,7 @@ function Particles() {
   )
 }
 
-export default function ParticleCanvas() {
+const ParticleCanvas = memo(function ParticleCanvas() {
   return (
     <div className="particle-wrapper" style={{ 
       position: 'absolute', 
@@ -124,4 +124,6 @@ export default function ParticleCanvas() {
       </Canvas>
     </div>
   )
-}
+})
+
+export default ParticleCanvas
