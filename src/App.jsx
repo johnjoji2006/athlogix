@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import HeroSequence from './components/HeroSequence'
 import Story from './components/Story'
 import Narrative from './components/Narrative'
 import AboutHome from './components/AboutHome'
@@ -29,6 +30,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={
             <main>
+              <HeroSequence />
               <Hero />
               <Story />
               <Narrative />

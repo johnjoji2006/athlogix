@@ -28,7 +28,7 @@ export default function AboutPage() {
       <section className="about-hero">
         <div className="container">
           <div className="about-hero__content">
-            <motion.h1 
+            <motion.h1
               className="about-hero__title"
               custom={0}
               initial="hidden"
@@ -37,7 +37,7 @@ export default function AboutPage() {
             >
               The Minds Behind <span className="logo-font">Athlogix</span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="about-hero__subtitle"
               custom={1}
               initial="hidden"

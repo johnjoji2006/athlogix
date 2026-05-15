@@ -1,0 +1,196 @@
+/* ============================================================
+   HeroSequence — Kinetic Typography Intro
+   ============================================================ */
+
+/* ---- Blur-in keyframe (DO Studio–style) ---- */
+@keyframes heroBlurIn {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+/* Rings expand-in */
+@keyframes ringExpand {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* CTA slide-up */
+@keyframes ctaSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Canvas ---- */
+.hero-sequence {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #090f38;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 24px;
+  margin: 0 12px;
+}
+
+/* Subtle vignette overlay for depth */
+.hero-sequence::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 30%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- Concentric Rings (DO Studio–style) ---- */
+.hero-sequence__rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-sequence__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.035);
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* When the sequence finishes, rings become visible with staggered delays */
+.hero-sequence__rings--visible .hero-sequence__ring {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---- Typography ---- */
+.hero-sequence__text {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+  padding: 0 24px;
+  color: #ffffff;
+  animation: heroBlurIn 0.4s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+/* ---- Style variants ---- */
+.hero-sequence__text--cyan {
+  color: #22d3ee; /* cyan-400 */
+  text-shadow:
+    0 0 20px rgba(34, 211, 238, 0.4),
+    0 0 60px rgba(34, 211, 238, 0.15);
+}
+
+.hero-sequence__text--final {
+  letter-spacing: 0.25em;
+  color: #ffffff;
+  text-shadow:
+    0 0 30px rgba(255, 255, 255, 0.15),
+    0 0 80px rgba(255, 255, 255, 0.05);
+}
+
+/* Highlighted word (inline cyan accent) */
+.hero-sequence__highlight {
+  color: #22d3ee;
+  margin-left: 0.3em;
+  text-shadow:
+    0 0 20px rgba(34, 211, 238, 0.4),
+    0 0 60px rgba(34, 211, 238, 0.15);
+}
+
+/* ---- CTA Button ---- */
+.hero-sequence__cta {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 36px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: #4f6ef7; /* Athlogix accent blue */
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-out, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-sequence__cta--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero-sequence__cta:hover {
+  background: #6b85ff; /* accent-hover */
+  box-shadow: 0 0 24px rgba(79, 110, 247, 0.45);
+}
+
+/* ---- Responsive scaling ---- */
+@media (max-width: 767px) {
+  .hero-sequence__text {
+    font-size: 2.75rem;
+    padding: 0 20px;
+  }
+
+  .hero-sequence__text--final {
+    letter-spacing: 0.15em;
+  }
+
+  .hero-sequence__cta {
+    margin-top: 36px;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-sequence__text {
+    font-size: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-sequence__text {
+    font-size: 7.5rem;
+  }
+}
