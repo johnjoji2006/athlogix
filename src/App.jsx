@@ -25,10 +25,10 @@ const PageLoader = () => (
 const HomeView = () => {
   const navigate = useNavigate();
   const [showFixedCta, setShowFixedCta] = useState(true);
-  const narrativeRef = useRef(null);
+  const hideCtaRef = useRef(null);
 
   useEffect(() => {
-    if (!narrativeRef.current) return;
+    if (!hideCtaRef.current) return;
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
@@ -41,7 +41,7 @@ const HomeView = () => {
         }
       }
     }, { threshold: 0.1 });
-    observer.observe(narrativeRef.current);
+    observer.observe(hideCtaRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -56,10 +56,10 @@ const HomeView = () => {
       <HeroSequence />
       <Story />
       <ServicesHome />
-      <div ref={narrativeRef}>
-        <Narrative />
+      <Narrative />
+      <div ref={hideCtaRef}>
+        <AboutHome />
       </div>
-      <AboutHome />
     </main>
   );
 };

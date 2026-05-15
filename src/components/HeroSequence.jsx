@@ -2,29 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HeroSequence.css';
 
-// The exact sequence of words that flash on screen.
-// Timer stops at the last entry ("ATHLOGIX" — final state).
-const sequence = [
-  { text: "Good Morning",        style: "" },
-  { text: "Think Software?",     style: "" },
-  { text: "Think",               highlight: "ATHLOGIX", style: "" },
-  { text: "We Engineer",         style: "" },
-  { text: "WEB APPLICATIONS",    style: "" },
-  { text: "SCALABLE SYSTEMS",    style: "" },
-  { text: "AI INTEGRATION",      style: "" },
-  { text: "MOBILE APPS",         style: "" },
-  { text: "CLOUD ARCHITECTURE",  style: "" },
-  { text: "Let's Build",         style: "" },
-  { text: "Your Digital Future", style: "" },
-  { text: "ATHLOGIX",            style: "hero-sequence__text--final" },
-];
-
 // Concentric ring sizes (px) — massive filled circles, overflow the viewport
 const RINGS = [1400, 1100, 800];
+
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  if (hour < 18) return "Good Afternoon";
+  return "Good Evening";
+};
 
 export default function HeroSequence() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
+
+  // The exact sequence of words that flash on screen.
+  const sequence = React.useMemo(() => [
+    { text: getGreeting(),         style: "" },
+    { text: "Think Software?",     style: "" },
+    { text: "Think",               highlight: "ATHLOGIX", style: "" },
+    { text: "We Engineer",         style: "" },
+    { text: "WEB APPLICATIONS",    style: "" },
+    { text: "SCALABLE SYSTEMS",    style: "" },
+    { text: "AI INTEGRATION",      style: "" },
+    { text: "MOBILE APPS",         style: "" },
+    { text: "CLOUD ARCHITECTURE",  style: "" },
+    { text: "Let's Build",         style: "" },
+    { text: "Your Digital Future", style: "" },
+    { text: "ATHLOGIX",            style: "hero-sequence__text--final" },
+  ], []);
 
   const isFinished = currentIndex === sequence.length - 1;
 
