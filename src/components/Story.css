@@ -2,13 +2,24 @@
    STORY SECTION
    ============================================================ */
 
+/* ---- Card Wrapper ---- */
+.story-wrapper {
+  background-color: #ffffff;
+  padding-bottom: 24px;
+}
+
 .story {
   position: relative;
-  width: 100%;
-  padding: 120px 0;
-  background-color: #000000;
+  width: auto;
+  margin: 0 16px;
+  border-radius: 48px;
+  padding: 40px 0; /* Reduced padding, flex will handle vertical centering */
+  min-height: calc(100vh - 24px); /* Makes the card fit the screen */
+  background-color: #090f38; /* Match Athlogix dark navy instead of black */
   overflow: hidden;
   z-index: 10;
+  display: flex;
+  align-items: center;
 }
 
 .story__grid {

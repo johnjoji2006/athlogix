@@ -9,11 +9,11 @@ const sequence = [
   { text: "Think Software?",     style: "" },
   { text: "Think",               highlight: "ATHLOGIX", style: "" },
   { text: "We Engineer",         style: "" },
-  { text: "WEB APPLICATIONS",    style: "hero-sequence__text--cyan" },
-  { text: "SCALABLE SYSTEMS",    style: "hero-sequence__text--cyan" },
-  { text: "AI INTEGRATION",      style: "hero-sequence__text--cyan" },
-  { text: "MOBILE APPS",         style: "hero-sequence__text--cyan" },
-  { text: "CLOUD ARCHITECTURE",  style: "hero-sequence__text--cyan" },
+  { text: "WEB APPLICATIONS",    style: "" },
+  { text: "SCALABLE SYSTEMS",    style: "" },
+  { text: "AI INTEGRATION",      style: "" },
+  { text: "MOBILE APPS",         style: "" },
+  { text: "CLOUD ARCHITECTURE",  style: "" },
   { text: "Let's Build",         style: "" },
   { text: "Your Digital Future", style: "" },
   { text: "ATHLOGIX",            style: "hero-sequence__text--final" },
@@ -41,48 +41,43 @@ export default function HeroSequence() {
   const current = sequence[currentIndex];
 
   return (
-    <div className="hero-sequence" id="hero-sequence" aria-label="Kinetic typography intro">
+    <div className="hero-sequence-wrapper">
+      <div className="hero-sequence" id="hero-sequence" aria-label="Kinetic typography intro">
 
-      {/* ---- Concentric circle rings (DO Studio style) ---- */}
-      <div className={`hero-sequence__rings ${isFinished ? 'hero-sequence__rings--visible' : ''}`} aria-hidden="true">
-        {RINGS.map((size, i) => (
-          <div
-            key={i}
-            className="hero-sequence__ring"
-            style={{
-              width: `${size}px`,
-              height: `${size}px`,
-              transitionDelay: `${i * 0.12}s`,
-            }}
-          />
-        ))}
+        {/* ---- Concentric circle rings (DO Studio style) ---- */}
+        <div className={`hero-sequence__rings ${isFinished ? 'hero-sequence__rings--visible' : ''}`} aria-hidden="true">
+          {RINGS.map((size, i) => (
+            <div
+              key={i}
+              className="hero-sequence__ring"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                transitionDelay: `${i * 0.12}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/*
+          key={currentIndex} forces React to unmount / remount the <h1>,
+          which re-triggers the CSS blur-in animation on every word change.
+        */}
+        <h1
+          key={currentIndex}
+          className={`hero-sequence__text ${current.style}`}
+        >
+          {current.text}
+
+          {/* Inline cyan highlight for the "Think ATHLOGIX" phrase */}
+          {current.highlight && (
+            <span className="hero-sequence__highlight">
+              {current.highlight}
+            </span>
+          )}
+        </h1>
+
       </div>
-
-      {/*
-        key={currentIndex} forces React to unmount / remount the <h1>,
-        which re-triggers the CSS blur-in animation on every word change.
-      */}
-      <h1
-        key={currentIndex}
-        className={`hero-sequence__text ${current.style}`}
-      >
-        {current.text}
-
-        {/* Inline cyan highlight for the "Think ATHLOGIX" phrase */}
-        {current.highlight && (
-          <span className="hero-sequence__highlight">
-            {current.highlight}
-          </span>
-        )}
-      </h1>
-
-      {/* ---- CTA button (fades in after sequence finishes) ---- */}
-      <button
-        className="hero-sequence__cta hero-sequence__cta--visible"
-        onClick={() => navigate('/quote')}
-      >
-        Enquire Now
-      </button>
     </div>
   );
 }

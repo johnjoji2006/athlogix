@@ -172,3 +172,36 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(79, 110, 247, 0.5);
 }
+
+/* ---- Global Fixed CTA ---- */
+.global-fixed-cta {
+  position: fixed;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 36px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #4f6ef7;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 8px 30px rgba(79, 110, 247, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.global-fixed-cta--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.global-fixed-cta:hover {
+  background: #6b85ff;
+  box-shadow: 0 12px 40px rgba(79, 110, 247, 0.4);
+  transform: translateX(-50%) translateY(-2px);
+}

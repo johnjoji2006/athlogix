@@ -20,7 +20,7 @@
 }
 
 .navbar--solid {
-  background: #090f38;
+  background: rgba(9, 15, 56, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -248,3 +248,22 @@
   box-shadow: 0 15px 30px rgba(79, 110, 247, 0.4);
 }
 
+/* ---- Dark Text for White Frame (Transparent State) ---- */
+.navbar--transparent .navbar__logo-text,
+.navbar--transparent .navbar__hamburger {
+  color: #090f38;
+}
+
+.navbar--transparent .navbar__link {
+  color: rgba(9, 15, 56, 0.75);
+}
+
+.navbar--transparent .navbar__link:hover {
+  color: #090f38;
+}
+
+.navbar--transparent .navbar__cta {
+  background: #090f38;
+  color: #ffffff;
+  border-color: transparent;
+}

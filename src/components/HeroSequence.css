@@ -40,19 +40,25 @@
   }
 }
 
+/* ---- Canvas Wrapper (White Frame) ---- */
+.hero-sequence-wrapper {
+  background-color: #ffffff;
+  padding-top: 80px; /* Space for the white navbar */
+  padding-bottom: 24px;
+}
+
 /* ---- Canvas ---- */
 .hero-sequence {
   position: relative;
-  height: 100vh;
-  width: 100%;
+  height: calc(100vh - 104px);
+  margin: 0 16px;
+  border-radius: 48px;
   background: #090f38;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 24px;
-  margin: 0 12px;
 }
 
 /* Subtle vignette overlay for depth */
@@ -125,13 +131,13 @@
     0 0 80px rgba(255, 255, 255, 0.05);
 }
 
-/* Highlighted word (inline cyan accent) */
+/* Highlighted word (inline accent) */
 .hero-sequence__highlight {
-  color: #22d3ee;
+  color: #4f6ef7;
   margin-left: 0.3em;
   text-shadow:
-    0 0 20px rgba(34, 211, 238, 0.4),
-    0 0 60px rgba(34, 211, 238, 0.15);
+    0 0 20px rgba(79, 110, 247, 0.4),
+    0 0 60px rgba(79, 110, 247, 0.15);
 }
 
 /* ---- CTA Button ---- */
