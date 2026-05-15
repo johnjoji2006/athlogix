@@ -91,13 +91,41 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.035);
   opacity: 0;
-  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-/* When the sequence finishes, rings become visible with staggered delays */
-.hero-sequence__rings--visible .hero-sequence__ring {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+/* When the sequence triggers a pulse in-between */
+.hero-sequence__rings--pulse .hero-sequence__ring {
+  animation: ringPulse 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* When the sequence finishes, rings expand and stay visible */
+.hero-sequence__rings--final .hero-sequence__ring {
+  animation: ringExpandFinal 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes ringPulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes ringExpandFinal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 /* ---- Typography ---- */

@@ -18,17 +18,17 @@ export default function HeroSequence() {
 
   // The exact sequence of words that flash on screen.
   const sequence = React.useMemo(() => [
-    { text: getGreeting(),         style: "" },
+    { text: getGreeting(),         style: "", pulse: true },
     { text: "Think Software?",     style: "" },
-    { text: "Think",               highlight: "ATHLOGIX", style: "" },
+    { text: "Think",               highlight: "ATHLOGIX", style: "", pulse: true },
     { text: "We Engineer",         style: "" },
-    { text: "WEB APPLICATIONS",    style: "" },
+    { text: "WEB APPLICATIONS",    style: "", pulse: true },
     { text: "SCALABLE SYSTEMS",    style: "" },
-    { text: "AI INTEGRATION",      style: "" },
+    { text: "AI INTEGRATION",      style: "", pulse: true },
     { text: "MOBILE APPS",         style: "" },
-    { text: "CLOUD ARCHITECTURE",  style: "" },
+    { text: "CLOUD ARCHITECTURE",  style: "", pulse: true },
     { text: "Let's Build",         style: "" },
-    { text: "Your Digital Future", style: "" },
+    { text: "Your Digital Future", style: "", pulse: true },
     { text: "ATHLOGIX",            style: "hero-sequence__text--final" },
   ], []);
 
@@ -51,7 +51,11 @@ export default function HeroSequence() {
       <div className="hero-sequence" id="hero-sequence" aria-label="Kinetic typography intro">
 
         {/* ---- Concentric circle rings (DO Studio style) ---- */}
-        <div className={`hero-sequence__rings ${isFinished ? 'hero-sequence__rings--visible' : ''}`} aria-hidden="true">
+        <div 
+          key={`rings-${currentIndex}`}
+          className={`hero-sequence__rings ${isFinished ? 'hero-sequence__rings--final' : (current.pulse ? 'hero-sequence__rings--pulse' : '')}`} 
+          aria-hidden="true"
+        >
           {RINGS.map((size, i) => (
             <div
               key={i}
@@ -59,7 +63,7 @@ export default function HeroSequence() {
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
-                transitionDelay: `${i * 0.12}s`,
+                animationDelay: `${i * 0.12}s`,
               }}
             />
           ))}

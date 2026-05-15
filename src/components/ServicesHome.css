@@ -54,7 +54,7 @@
 .services-home__col {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 60px;
 }
 
 .services-home__col--left {
@@ -67,19 +67,19 @@
 
 .services-home__item h3 {
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 900;
   color: #ffffff;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: -0.5px;
 }
 
 .services-home__item p {
-  font-size: 13px;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
-  max-width: 440px;
+  max-width: 100%;
 }
 
 .services-home__col--left .services-home__item p {
@@ -98,7 +98,7 @@
 
 .services-home__logo-mark {
   font-family: var(--font-heading);
-  font-size: 240px;
+  font-size: 160px;
   font-weight: 900;
   line-height: 0.85;
   color: #ffffff;
