@@ -1,7 +1,7 @@
-import { useRef } from 'react'
+import { useRef, Suspense } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, OrbitControls, MeshDistortMaterial, Environment } from '@react-three/drei'
+import { Float, OrbitControls, MeshDistortMaterial, Environment, Lightformer } from '@react-three/drei'
 import * as THREE from 'three'
 import { useNavigate } from 'react-router-dom'
 import { HiArrowRight } from 'react-icons/hi'
@@ -40,8 +40,16 @@ export default function Story() {
               <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" castShadow />
               <directionalLight position={[-10, -10, -5]} intensity={1} color="#4f6ef7" />
               <spotLight position={[0, 10, 0]} intensity={1.5} penumbra={1} color="#4f6ef7" />
-              <Environment preset="city" />
-              <Gears />
+              <Suspense fallback={null}>
+                <Environment resolution={256}>
+                  <group rotation={[-Math.PI / 4, -0.3, 0]}>
+                    <Lightformer type="ring" intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
+                    <Lightformer type="rect" intensity={4} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[20, 2, 1]} />
+                    <Lightformer type="rect" intensity={2} rotation-y={Math.PI / 2} position={[5, -1, -1]} scale={[20, 2, 1]} />
+                  </group>
+                </Environment>
+                <Gears />
+              </Suspense>
               <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
             </Canvas>
 
